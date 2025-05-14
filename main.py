@@ -5,8 +5,13 @@
 ############################################################
 # 1. ライブラリの読み込み
 ############################################################
-# 「.env」ファイルから環境変数を読み込むための関数
-from dotenv import load_dotenv
+import streamlit as st
+import os
+
+# Streamlit Secrets から API キーを取得して環境変数としてセット
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+
+
 # ログ出力を行うためのモジュール
 import logging
 # streamlitアプリの表示を担当するモジュール
