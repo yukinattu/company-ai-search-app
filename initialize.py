@@ -5,14 +5,13 @@
 ############################################################
 # ライブラリの読み込み
 ############################################################
+import streamlit as st
 import os
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from uuid import uuid4
 import sys
 import unicodedata
-from dotenv import load_dotenv
-import streamlit as st
 from docx import Document
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import CharacterTextSplitter
@@ -24,9 +23,8 @@ import constants as ct
 ############################################################
 # 設定関連
 ############################################################
-# 「.env」ファイルで定義した環境変数の読み込み
-load_dotenv()
-
+# 3. APIキーの設定
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 ############################################################
 # 関数定義
