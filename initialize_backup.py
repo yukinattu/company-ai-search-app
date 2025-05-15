@@ -35,13 +35,13 @@ def initialize():
     画面読み込み時に実行する初期化処理
     """
     # 初期化データの用意
-    initialize_session_state()
+    #initialize_session_state()
     # ログ出力用にセッションIDを生成
     #initialize_session_id()
     # ログ出力の設定
-    initialize_logger()
+    #initialize_logger()
     # RAGのRetrieverを作成
-    initialize_retriever()
+    #initialize_retriever()
 
 
 def initialize_logger():
