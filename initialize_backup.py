@@ -41,7 +41,7 @@ def initialize():
     # ログ出力の設定
     initialize_logger()
     # RAGのRetrieverを作成
-    #initialize_retriever()
+    initialize_retriever()
 
 
 def initialize_logger():
@@ -162,12 +162,12 @@ def load_data_sources():
     web_docs_all = []
     # ファイルとは別に、指定のWebページ内のデータも読み込み
     # 読み込み対象のWebページ一覧に対して処理
-    for web_url in ct.WEB_URL_LOAD_TARGETS:
+    #for web_url in ct.WEB_URL_LOAD_TARGETS:
         # 指定のWebページを読み込み
-        loader = WebBaseLoader(web_url)
-        web_docs = loader.load()
+    #    loader = WebBaseLoader(web_url)
+    #    web_docs = loader.load()
         # for文の外のリストに読み込んだデータソースを追加
-        web_docs_all.extend(web_docs)
+    #    web_docs_all.extend(web_docs)
     # 通常読み込みのデータソースにWebページのデータを追加
     docs_all.extend(web_docs_all)
 
