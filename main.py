@@ -41,9 +41,13 @@ logger = logging.getLogger(ct.LOGGER_NAME)
 ############################################################
 # 3. 初期化処理
 ############################################################
+
+initialize_session_state()  # 先にセッション用意（ここ重要）
+
 try:
-    #初期化処理（「initialize.py」の「initialize」関数を実行）
-    initialize()
+    initialize_session_id()
+    initialize_logger()
+    initialize_retriever()
 except Exception as e:
     #エラーログの出力
     logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
