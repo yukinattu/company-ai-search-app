@@ -41,16 +41,16 @@ logger = logging.getLogger(ct.LOGGER_NAME)
 ############################################################
 # 3. 初期化処理
 ############################################################
-#try:
+try:
     #初期化処理（「initialize.py」の「initialize」関数を実行）
-#    initialize()
-#except Exception as e:
-#    #エラーログの出力
-#    logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
+    initialize()
+except Exception as e:
+    #エラーログの出力
+    logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
     #エラーメッセージの画面表示
-#    st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
+    st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
     #後続の処理を中断
-#    st.stop()
+    st.stop()
 
 #👇 最小構成でStreamlitが動くか確認
 #st.write("✅ Streamlit 起動テスト成功！")
