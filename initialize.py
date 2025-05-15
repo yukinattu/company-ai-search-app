@@ -233,9 +233,22 @@ def file_load(path, docs_all):
 
     # 通常のローダーによる読み込み（.pdf, .docx, .txtなど）
     if file_extension in ct.SUPPORTED_EXTENSIONS:
-        loader = ct.SUPPORTED_EXTENSIONS[file_extension](path)
+        loader_class = ct.SUPPORTED_EXTENSIONS[file_extension]
+    
+    # --- PDFだけ特別処理 ---
+        if file_extension == ".pdf":
+            loader = loader_class(path)
+            docs = loader.load()  # 1ページ1チャンクで読み込み
+            for i, doc in enumerate(docs):
+                doc.metadata["page"] = i + 1  # ページ番号を1から付加
+            docs_all.extend(docs)
+    
+    # --- その他（.docx, .txtなど）はそのまま読み込み ---
+    else:
+        loader = loader_class(path)
         docs = loader.load()
         docs_all.extend(docs)
+
 
 
 
