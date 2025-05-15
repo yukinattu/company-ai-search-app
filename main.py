@@ -19,7 +19,7 @@ import streamlit as st
 # （自作）画面表示以外の様々な関数が定義されているモジュール
 import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
-from initialize import initialize
+#from initialize import initialize
 # （自作）画面表示系の関数が定義されているモジュール
 import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
@@ -41,16 +41,19 @@ logger = logging.getLogger(ct.LOGGER_NAME)
 ############################################################
 # 3. 初期化処理
 ############################################################
-try:
+#try:
     # 初期化処理（「initialize.py」の「initialize」関数を実行）
-    initialize()
-except Exception as e:
+    #initialize()
+#except Exception as e:
     # エラーログの出力
-    logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
+    #logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
     # エラーメッセージの画面表示
-    st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
+    #st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
     # 後続の処理を中断
-    st.stop()
+    #st.stop()
+
+# 👇 最小構成でStreamlitが動くか確認
+st.write("✅ Streamlit 起動テスト成功！")
 
 # アプリ起動時のログファイルへの出力
 if not "initialized" in st.session_state:
