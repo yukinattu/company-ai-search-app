@@ -214,6 +214,7 @@ def file_load(path, docs_all):
     """
     # ファイルの拡張子を取得
     file_extension = os.path.splitext(path)[1]
+    # ファイル名（拡張子を含む）を取得
     file_name = os.path.basename(path)
 
     # 特別処理：社員名簿.csv を構造化して1ドキュメントにまとめる
@@ -226,26 +227,15 @@ def file_load(path, docs_all):
                 record = "\n".join([f"{key.strip()}：{value.strip()}" for key, value in row.items()])
                 records.append(record)
             full_text = "\n\n---\n\n".join(records)
+        # 🚨 チャンク分割なしで直接追加！
             docs_all.append(Document(page_content=full_text, metadata={"source": path}))
         return
 
-    # 通常のローダーによる読み込み（.pdf, .docx, .txt など）
+    # 通常のローダーによる読み込み（.pdf, .docx, .txtなど）
     if file_extension in ct.SUPPORTED_EXTENSIONS:
-        loader_class = ct.SUPPORTED_EXTENSIONS[file_extension]
-
-        # --- PDFだけ特別処理（全ページ連結して1ドキュメントに） ---
-        if file_extension == ".pdf":
-            loader = loader_class(path)
-            docs = loader.load()
-            full_text = "\n\n".join([doc.page_content for doc in docs])
-            docs_all.append(Document(page_content=full_text, metadata={"source": path}))
-        else:
-            # その他（.docx, .txt など）はそのまま読み込み
-            loader = loader_class(path)
-            docs = loader.load()
-            docs_all.extend(docs)
-
-
+        loader = ct.SUPPORTED_EXTENSIONS[file_extension](path)
+        docs = loader.load()
+        docs_all.extend(docs)
 
 
 
