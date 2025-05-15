@@ -21,7 +21,8 @@ import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
 from initialize import initialize
 
-from initialize import initialize_session_state
+from initialize import initialize_session_state, initialize_session_id, initialize_logger, initialize_retriever
+
 
 # （自作）画面表示系の関数が定義されているモジュール
 import components as cn
