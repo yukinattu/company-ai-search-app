@@ -20,6 +20,7 @@ from langchain_community.vectorstores import Chroma
 import constants as ct
 
 from langchain_community.vectorstores import FAISS
+from langchain.schema import Document 
 
 
 
@@ -201,6 +202,8 @@ def recursive_file_check(path, docs_all):
         file_load(path, docs_all)
 
 
+from langchain.schema import Document  # ← 必要
+
 def file_load(path, docs_all):
     """
     ファイル内のデータ読み込み
@@ -214,12 +217,25 @@ def file_load(path, docs_all):
     # ファイル名（拡張子を含む）を取得
     file_name = os.path.basename(path)
 
-    # 想定していたファイル形式の場合のみ読み込む
+    # 特別処理：社員名簿.csv を構造化して1ドキュメントにまとめる
+    if file_extension == ".csv" and "社員名簿" in file_name:
+        import csv
+        with open(path, newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            records = []
+            for row in reader:
+                record = "\n".join([f"{key.strip()}：{value.strip()}" for key, value in row.items()])
+                records.append(record)
+            full_text = "\n\n---\n\n".join(records)
+            docs_all.append(Document(page_content=full_text, metadata={"source": path}))
+        return
+
+    # 通常のローダーによる読み込み（.pdf, .docx, .txtなど）
     if file_extension in ct.SUPPORTED_EXTENSIONS:
-        # ファイルの拡張子に合ったdata loaderを使ってデータ読み込み
         loader = ct.SUPPORTED_EXTENSIONS[file_extension](path)
         docs = loader.load()
         docs_all.extend(docs)
+
 
 
 def adjust_string(s):
