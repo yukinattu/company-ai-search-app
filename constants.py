@@ -63,7 +63,7 @@ WEB_URL_LOAD_TARGETS = [
 # constants.py
 CHUNK_SIZE = 500
 CHUNK_OVERLAP = 50
-SEARCH_TOP_K = 10
+SEARCH_TOP_K = 5
 
 # ==========================================
 # プロンプトテンプレート
