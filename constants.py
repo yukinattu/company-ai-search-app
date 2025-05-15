@@ -61,7 +61,7 @@ WEB_URL_LOAD_TARGETS = [
 # RAGのデータソースの読み込み
 # ==========================================
 # constants.py
-CHUNK_SIZE = 1000
+CHUNK_SIZE = 500
 CHUNK_OVERLAP = 50
 SEARCH_TOP_K = 10
 
