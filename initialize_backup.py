@@ -39,7 +39,7 @@ def initialize():
     # ログ出力用にセッションIDを生成
     initialize_session_id()
     # ログ出力の設定
-    #initialize_logger()
+    initialize_logger()
     # RAGのRetrieverを作成
     #initialize_retriever()
 
