@@ -227,6 +227,7 @@ def file_load(path, docs_all):
                 record = "\n".join([f"{key.strip()}：{value.strip()}" for key, value in row.items()])
                 records.append(record)
             full_text = "\n\n---\n\n".join(records)
+        # 🚨 チャンク分割なしで直接追加！
             docs_all.append(Document(page_content=full_text, metadata={"source": path}))
         return
 
