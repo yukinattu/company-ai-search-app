@@ -52,7 +52,7 @@ except Exception as e:
     #後続の処理を中断
     st.stop()
 
-👇 最小構成でStreamlitが動くか確認
+#👇 最小構成でStreamlitが動くか確認
 st.write("✅ Streamlit 起動テスト成功！")
 
 # アプリ起動時のログファイルへの出力
